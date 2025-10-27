@@ -1,0 +1,553 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 26% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 26% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 26% 14%;
+
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 258 30% 95%;
+    --secondary-foreground: 220 26% 14%;
+
+    --muted: 258 30% 95%;
+    --muted-foreground: 220 13% 46%;
+
+    --accent: 258 30% 95%;
+    --accent-foreground: 220 26% 14%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 258 30% 91%;
+    --input: 258 30% 91%;
+    --ring: 258 90% 66%;
+
+    --hero-gradient: linear-gradient(135deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%));
+    --hero-bg: 258 50% 95%;
+    --purple-gradient: linear-gradient(135deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%));
+    --purple-light: 258 50% 95%;
+    --purple-dark: 258 90% 66%;
+    --accent-gradient: linear-gradient(90deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%), hsl(300, 80%, 70%));
+    --skill-hover: 258 70% 85%;
+    --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --purple-glow: 0 0 40px hsl(258, 90%, 66% / 0.3);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 26% 14%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 26% 14%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 26% 14%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 26% 18%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 26% 18%;
+    --muted-foreground: 220 13% 65%;
+
+    --accent: 220 26% 18%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 26% 18%;
+    --input: 220 26% 18%;
+    --ring: 258 90% 66%;
+
+    --hero-gradient: linear-gradient(135deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%));
+    --hero-bg: 220 26% 18%;
+    --purple-gradient: linear-gradient(135deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%));
+    --purple-light: 220 26% 18%;
+    --purple-dark: 258 90% 66%;
+    --accent-gradient: linear-gradient(90deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%), hsl(300, 80%, 70%));
+    --skill-hover: 258 70% 35%;
+    --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    --purple-glow: 0 0 40px hsl(258, 90%, 66% / 0.5);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  .hero-section {
+    background: var(--hero-gradient);
+    position: relative;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, hsl(258, 90%, 66% / 0.1), transparent 70%);
+  }
+  
+  .skill-badge {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .skill-badge:hover {
+    background: hsl(var(--purple-dark));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--purple-glow);
+  }
+  
+  .project-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(258, 90%, 66% / 0.1), transparent);
+    transition: left 0.5s;
+  }
+  
+  .project-card:hover::before {
+    left: 100%;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow);
+    border-color: hsl(var(--primary));
+  }
+  
+  .gradient-text {
+    background: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  .shining-text {
+    background: linear-gradient(90deg, hsl(60, 100%, 70%), hsl(180, 100%, 70%), hsl(300, 100%, 70%), hsl(60, 100%, 70%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: shine 2s ease-in-out infinite;
+  }
+  
+  @keyframes shine {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .pulse-purple {
+    animation: pulse-purple 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-purple {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(258, 90%, 66% / 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px hsl(258, 90%, 66% / 0);
+    }
+  }
+  
+  /* Professional Hover Lighting Effects */
+  .lighting-effect {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .lighting-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, hsl(258, 90%, 66% / 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .lighting-effect:hover::before {
+    opacity: 1;
+    animation: lighting-pulse 1.5s ease-in-out infinite;
+  }
+  
+  .lighting-effect:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px -5px hsl(258, 90%, 66% / 0.3), 0 0 20px hsl(258, 90%, 66% / 0.2);
+  }
+  
+  @keyframes lighting-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.6;
+    }
+  }
+  
+  /* Button Glow Effect */
+  .glow-on-hover {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .glow-on-hover:hover {
+    box-shadow: 0 0 20px hsl(258, 90%, 66% / 0.6), 0 0 40px hsl(258, 90%, 66% / 0.4), 0 0 60px hsl(258, 90%, 66% / 0.2);
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  /* Navigation Link Underline Effect */
+  .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(258, 90%, 66%), hsl(280, 85%, 75%));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Card Shimmer Effect */
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(258, 90%, 66% / 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .shimmer-effect:hover::before {
+    left: 100%;
+  }
+  
+  /* Icon Glow Effect */
+  .icon-glow:hover {
+    filter: drop-shadow(0 0 8px hsl(258, 90%, 66% / 0.6));
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Soft Border Glow */
+  .border-glow {
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+  }
+  
+  .border-glow:hover {
+    border-color: hsl(258, 90%, 66% / 0.5);
+    box-shadow: 0 0 0 1px hsl(258, 90%, 66% / 0.3), inset 0 0 20px hsl(258, 90%, 66% / 0.1);
+  }
+  
+  /* Enhanced Animations */
+  .floating-animation {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .pulse-grow {
+    animation: pulse-grow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-grow {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  .bounce-in {
+    animation: bounce-in 0.6s ease-out;
+  }
+  
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+  
+  @keyframes slide-up {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .rotate-in {
+    animation: rotate-in 0.6s ease-out;
+  }
+  
+  @keyframes rotate-in {
+    from {
+      transform: rotate(-180deg) scale(0);
+      opacity: 0;
+    }
+    to {
+      transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Text Glow Effect */
+  .text-glow:hover {
+    text-shadow: 0 0 10px hsl(258, 90%, 66% / 0.8), 0 0 20px hsl(258, 90%, 66% / 0.6), 0 0 30px hsl(258, 90%, 66% / 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  /* Card Flip Effect */
+  .flip-card {
+    perspective: 1000px;
+  }
+  
+  .flip-card:hover .flip-inner {
+    transform: rotateY(5deg) rotateX(5deg);
+  }
+  
+  .flip-inner {
+    transition: transform 0.3s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Hero Section Animations */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+  
+  @keyframes blink {
+    0%, 49% {
+      opacity: 1;
+    }
+    50%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .animate-bounce-in {
+    animation: bounce-in 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .typewriter-text {
+    display: inline-block;
+    animation: typing 2s steps(14) 1s forwards, gradient-x 3s ease infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+    max-width: 0;
+  }
+  
+  @keyframes typing {
+    from {
+      max-width: 0;
+    }
+    to {
+      max-width: 100%;
+    }
+  }
+  }
